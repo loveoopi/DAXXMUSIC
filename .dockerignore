@@ -1,10 +1,49 @@
+# Environment and local files
 .env
-.cache
-log.txt
-.DS_Store
+.env.local
+*.env
+
+# Python cache and build files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Node.js files
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Log and temporary files
+*.log
 *.session
+*.session-journal
+.DS_Store
+
+# Bot-specific temporary directories
 raw_files/
 cache/
 downloads/
-__pycache__/
-*.session-journal
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git files
+.git
+.gitignore
+
+# Local databases
+*.sqlite
+*.db
+
+# Documentation (optional, include if not needed by app)
+README.md
+LICENSE
+docs/
