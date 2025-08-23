@@ -1,12 +1,27 @@
-FROM nikolaik/python-nodejs:python3.10-nodejs19
+FROM python:3.10-bullseye
 
+# Install Node.js and Yarn
+RUN curl -fsSL https://deb.nodesource.com/setup_19.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g yarn
+
+# Install ffmpeg
 RUN apt-get update \
     && apt-get install -y --no-install-recommends ffmpeg \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-COPY . /app/
-WORKDIR /app/
-RUN pip3 install --no-cache-dir -U -r requirements.txt
+# Set working directory
+WORKDIR /app
 
-CMD bash start
+# Copy requirements files
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application
+COPY . .
+
+# Command to run the bot
+CMD ["python", "app.py"]
